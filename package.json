@@ -1,0 +1,54 @@
+{
+    "name": "api.syfter.filament.ai",
+    "version": "1.0.0",
+    "description": "Backend API built using Typescript",
+    "main": "index.js",
+    "scripts": {
+        "prestart": "npm run database-build",
+        "dev": "npm run prestart && concurrently -r \"npm:compile\" \"nodemon build/index.js | pino-pretty\"",
+        "build": "tsc",
+        "compile": "tsc --incremental --watch --preserveWatchOutput",
+        "start": "node build/index.js",
+        "database-build": "knex migrate:latest && knex seed:run"
+    },
+    "keywords": [],
+    "author": "Syfter",
+    "email": "syfter@filament.ai",
+    "license": "ISC",
+    "dependencies": {
+        "dayjs": "^1.10.7",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "knex": "^0.95.15",
+        "lodash": "^4.17.21",
+        "pino": "^7.6.1",
+        "source-map-support": "^0.5.21",
+        "sqlite3": "^5.1.6",
+        "swagger-ui-express": "^4.3.0"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^7.6.0",
+        "@types/express": "^4.17.13",
+        "@types/express-pino-logger": "^4.0.3",
+        "@types/lodash": "^4.14.194",
+        "@types/node": "^17.0.8",
+        "@types/pino": "^7.0.5",
+        "@types/serve-favicon": "^2.5.3",
+        "@types/swagger-ui-express": "^4.1.3",
+        "@typescript-eslint/parser": "^5.8.0",
+        "concurrently": "^8.0.1",
+        "eslint": "^8.6.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-airbnb-typescript": "^16.1.0",
+        "eslint-plugin-import": "^2.25.3",
+        "express-pino-logger": "^7.0.0",
+        "nodemon": "^2.0.15",
+        "pino-pretty": "^7.3.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
+    },
+    "engines": {
+        "node": "18",
+        "npm": "8"
+    }
+}
