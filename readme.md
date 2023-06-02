@@ -10,9 +10,9 @@
 1. `npm install` - installs all the node dependencies
 2. Create a `.env` with the following keys, and choose a `PORT` you want the server to use.
 
-    ```env
-    PORT=4001
-    ```
+   ```env
+   PORT=4001
+   ```
 
 ## Commands
 
@@ -70,6 +70,7 @@ If using source control, please start by committing the unmodified source code a
   - It is not necessary to include Swagger for the search endpoint for this task.
 
 ## Good luck!
+
 We are looking forward to what you submit, and please expect for us to discuss your implementation as part of the interview process and hear your explanations for the choices you made. We will also be particularly interested to hear about the topics which you would have liked to explore in greater detail, if you had more time.
 
 If at any point you need any guidance or pointers, or if anything doesn't make sense, please get in touch. Otherwise please have fun and good luck!

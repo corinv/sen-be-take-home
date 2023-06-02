@@ -1,85 +1,93 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "mocha": true
-    },
-    "extends": [
-        "airbnb-base"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "overrides": [
-        {
-            "files": ["*.ts", "*.tsx"],
-            "extends": ["airbnb-typescript/base"],
-            "parserOptions": {
-                "project": "./tsconfig.json"
-            },
-            "rules": {
-                "import/prefer-default-export": "off",
-                "@typescript-eslint/indent": ["error", 4, {
-                    "SwitchCase": 1
-                }],
-                "@typescript-eslint/comma-dangle": 0,
-                "@typescript-eslint/no-use-before-define": "off",
-                
-                "@typescript-eslint/naming-convention": "off",
-                "@typescript-eslint/no-throw-literal": "off"
-            }
-        }
-    ],
-    "rules": {
-        "default-param-last": "off",
-        "indent": ["error", 4, {
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["airbnb-typescript/base"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/indent": [
+          "error",
+          4,
+          {
             "SwitchCase": 1
-        }],
-        "max-len": ["error", 500],
-        "space-before-function-paren": [ 
-            2, {
-                "anonymous": "always",
-                "named": "never"
-            } 
+          }
         ],
-        "semi": 1, 
-        "no-plusplus": 0,
-        "func-names": ["error", "never"],
-        "function-call-argument-newline": ["off", "consistent"],
-        "function-paren-newline": ["error", "consistent"],
-        "consistent-return": "off",
-        "no-restricted-globals": "off",
-        "arrow-parens": 0,
-        "arrow-body-style": 0,
-        "no-use-before-define": [
-            2,
-            "nofunc"
-        ],
-        "object-curly-newline": "off",
-        "no-continue": "off",
-        "no-lonely-if": "off",
-        "no-console": 0,
-        "no-await-in-loop": 0,
-        "no-param-reassign": 0,
-        "global-require": 0,
-        "no-else-return": 0,
-        "no-prototype-builtins": 0,
-        "comma-dangle": [
-            0
-        ],
-        "import/no-extraneous-dependencies": [
-            "error", {
-                "devDependencies": true
-            }
-        ],
-        "no-underscore-dangle": [
-            0
-        ],
-        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
+        "@typescript-eslint/comma-dangle": 0,
+        "@typescript-eslint/no-use-before-define": "off",
+
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-throw-literal": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "argsIgnorePattern": "^_" }
+        ]
+      }
     }
+  ],
+  "rules": {
+    "default-param-last": "off",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "max-len": ["error", 500],
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "semi": 1,
+    "no-plusplus": 0,
+    "func-names": ["error", "never"],
+    "function-call-argument-newline": ["off", "consistent"],
+    "function-paren-newline": ["error", "consistent"],
+    "consistent-return": "off",
+    "no-restricted-globals": "off",
+    "arrow-parens": 0,
+    "arrow-body-style": 0,
+    "no-use-before-define": [2, "nofunc"],
+    "object-curly-newline": "off",
+    "no-continue": "off",
+    "no-lonely-if": "off",
+    "no-console": 0,
+    "no-await-in-loop": 0,
+    "no-param-reassign": 0,
+    "global-require": 0,
+    "no-else-return": 0,
+    "no-prototype-builtins": 0,
+    "comma-dangle": [0],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "no-underscore-dangle": [0],
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
 }
