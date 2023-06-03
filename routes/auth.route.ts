@@ -1,8 +1,11 @@
-import express from "express";
-import * as controller from "../controller/auth.controller";
+import { RequestHandler } from "express-serve-static-core";
+import { AuthController } from "../controller/auth.controller";
+import { AppRouter } from "../utils/appRouter.js";
 
-const authRouter = express.Router();
-
-authRouter.post("/login", controller.authenticateUser);
-
-export default authRouter;
+export class AuthRouter extends AppRouter {
+  constructor(controller: AuthController) {
+    super();
+    this.router.post("/login", controller.login as RequestHandler);
+    this.router.post("/signup", controller.signup as RequestHandler);
+  }
+}

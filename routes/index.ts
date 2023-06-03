@@ -1,14 +1,29 @@
-import express, { Response, Request } from "express";
-import { authenticate } from "../middleware/auth";
-import usersRouter from "./users.route";
-import authRouter from "./auth.route";
-import postsRouter from "./posts.route";
+import { Response, Request, RequestHandler } from "express";
+import { AuthMiddleware } from "../middleware/auth.middleware";
+import { PostsRouter } from "./posts.route.js";
+import { UsersRouter } from "./users.route.js";
+import { AuthRouter } from "./auth.route.js";
+import { AppRouter } from "../utils/appRouter.js";
+import HttpStatusCode from "../utils/httpStatusCode.enum.js";
 
-const router = express.Router({ mergeParams: true });
+const OKController = (_req: Request, res: Response) => {
+  res.sendStatus(HttpStatusCode.OK);
+};
 
-router.get("", (_req: Request, res: Response) => res.sendStatus(200));
-router.use("/auth", authRouter);
-router.use("/users", authenticate, usersRouter);
-router.use("/posts", authenticate, postsRouter);
+export class RootRouter extends AppRouter {
+  constructor(
+    authRouter: AuthRouter,
+    usersRouter: UsersRouter,
+    postsRouter: PostsRouter,
+    authMiddleware: AuthMiddleware
+  ) {
+    super({ mergeParams: true });
 
-export default router;
+    const authenticate = authMiddleware.toExpress();
+
+    this.router.get("", OKController as RequestHandler);
+    this.router.use("/auth", authRouter.toExpress());
+    this.router.use("/users", authenticate, usersRouter.toExpress());
+    this.router.use("/posts", authenticate, postsRouter.toExpress());
+  }
+}

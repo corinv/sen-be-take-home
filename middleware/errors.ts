@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import logger from "../logger";
+import HttpStatusCode from "../utils/httpStatusCode.enum.js";
 
 export function errorFunction(
   err: { name: string; statusCode?: number; message?: string },
@@ -9,9 +10,9 @@ export function errorFunction(
 ) {
   logger.error(err);
 
-  res.status(err.statusCode || 500).send({
+  res.status(err.statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR).send({
     name: err.name,
-    status: err.statusCode || 500,
+    status: err.statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR,
     message: err.message || "Error",
   });
 }
@@ -23,6 +24,6 @@ export class ApplicationError extends Error {
     super();
     this.message = message;
     this.name = name || this.constructor.name;
-    this.statusCode = statusCode || 500;
+    this.statusCode = statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
   }
 }
