@@ -6,6 +6,15 @@ export interface Post {
   updated_at: string | Date;
 }
 
-export interface SearchParams {
-  // TODO: Implement search parameter types
+export interface PostMetadata extends Omit<Partial<Post>, "content"> {}
+
+export interface PostMetadataParams {
+  title?: string;
+  user_id?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface SearchParams extends PostMetadataParams {
+  term?: string;
 }

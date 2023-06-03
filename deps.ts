@@ -15,7 +15,7 @@ import { UsersService } from "./service/users.service.js";
 
 const usersService = new UsersService(knex);
 const authService = new AuthService(usersService);
-const postsService = new PostsService();
+const postsService = new PostsService(knex);
 
 const usersController = new UsersController(usersService);
 const authController = new AuthController(authService);
