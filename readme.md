@@ -74,3 +74,11 @@ If using source control, please start by committing the unmodified source code a
 We are looking forward to what you submit, and please expect for us to discuss your implementation as part of the interview process and hear your explanations for the choices you made. We will also be particularly interested to hear about the topics which you would have liked to explore in greater detail, if you had more time.
 
 If at any point you need any guidance or pointers, or if anything doesn't make sense, please get in touch. Otherwise please have fun and good luck!
+
+## NOTE:
+
+Authentication has been implemented via JWT tokens - API expects them to be included in the `Authorization` header in the form
+
+```
+JWT YOUR_TOKEN_HERE
+```
