@@ -9,6 +9,7 @@ export class AuthService {
   secret: string;
   expiry = 1209600; // 2 weeks in seconds
   _passport: PassportStatic;
+
   constructor(private usersService: UsersService) {
     this.secret = process.env.JWT_SECRET || "";
     if (!this.secret) {
@@ -37,6 +38,7 @@ export class AuthService {
       return done(null, user);
     });
   };
+
   getUserJWT = (user: User): string => {
     return jwt.sign(
       {
@@ -48,19 +50,24 @@ export class AuthService {
       }
     );
   };
+
   authenticateUser = async (
     email: string,
     password: string
   ): Promise<AuthResponse | undefined> => {
     const user = await this.usersService.validateCredentials(email, password);
 
-    if (!user) return;
-
+    if (!user) {
+      await this.usersService.incrementPasswordAttempts(email);
+      return;
+    }
+    await this.usersService.resetPasswordAttempts(email);
     return {
       id: user.id,
       token: this.getUserJWT(user),
     };
   };
+
   signup = async (email: string, password: string): Promise<AuthResponse> => {
     const user = await this.usersService.create(email, password);
 

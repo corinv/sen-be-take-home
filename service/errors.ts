@@ -29,3 +29,13 @@ export class EmailAlreadyTakenError extends ApplicationError {
     );
   }
 }
+
+export class TooManyPasswordAttemptsError extends ApplicationError {
+  constructor() {
+    super(
+      "Too many password attempts for this user, try again later",
+      "TooManyPasswordAttempts",
+      HttpStatusCode.UNAUTHORIZED
+    );
+  }
+}
